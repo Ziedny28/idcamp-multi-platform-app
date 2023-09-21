@@ -13,59 +13,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Scaffold(
-        body: Center(
-          child: BiggerText(text: "multiplatform go brrrr"),
-        ),
-      ),
+      home: const FirstScreen(),
     );
   }
 }
 
-class Heading extends StatelessWidget {
-  final String text;
-
-  const Heading({Key? key, required this.text}) : super(key: key);
+class FirstScreen extends StatelessWidget {
+  const FirstScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(
-        fontSize: 24.0,
-        fontWeight: FontWeight.bold,
-      ),
-    );
-  }
-}
-
-class BiggerText extends StatefulWidget {
-  final String text;
-
-  const BiggerText({Key? key, required this.text}) : super(key: key);
-
-  @override
-  _BiggerTextState createState() => _BiggerTextState();
-}
-
-class _BiggerTextState extends State<BiggerText> {
-  double _textSize = 16.0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(widget.text, style: TextStyle(fontSize: _textSize)),
-        ElevatedButton(
-          child: const Text('perbesar'),
-          onPressed: () {
-            setState(() {
-              _textSize = 32.0;
-            });
-          },
-        )
-      ],
-    );
+  Widget build(BuildContext context){
+    return Scaffold();
   }
 }
