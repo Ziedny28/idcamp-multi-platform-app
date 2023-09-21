@@ -13,13 +13,29 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Hello World'),
-        ),
+      home: const Scaffold(
         body: Center(
-          child: Text('Hello World'),
+          child: Heading(
+            text: 'Hello World',
+          ),
         ),
+      ),
+    );
+  }
+}
+
+class Heading extends StatelessWidget {
+  final String text;
+
+  const Heading({Key? key, required this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: const TextStyle(
+        fontSize: 24.0,
+        fontWeight: FontWeight.bold,
       ),
     );
   }
