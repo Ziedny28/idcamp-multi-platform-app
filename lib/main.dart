@@ -22,7 +22,27 @@ class FirstScreen extends StatelessWidget {
   const FirstScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
-    return Scaffold();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('First Screen'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            onPressed: () {},
+          ),
+        ],
+        leading: IconButton(
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.white,
+          ),
+          onPressed: () {},
+        ),
+      ),
+    );
   }
 }
