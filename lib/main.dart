@@ -43,6 +43,9 @@ class FirstScreen extends StatelessWidget {
           onPressed: () {},
         ),
       ),
+      body: const Center(
+        child: Text('Hello world'),
+      ),
     );
   }
 }
