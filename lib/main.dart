@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -46,9 +48,19 @@ class FirstScreen extends StatelessWidget {
 
       //container is inside the body
       body: Container(
-        color: Colors.blue,
-        // padding: const EdgeInsets.all(20),
-        margin: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.red,
+          border: Border.all(color: Colors.green, width: 3),
+          borderRadius: BorderRadius.circular(10),
+          // shape: BoxShape.circle,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black,
+              offset: Offset(3, 6),
+              blurRadius: 10,
+            )
+          ],
+        ),
         child: const Text(
           'Hi',
           style: TextStyle(fontSize: 40),
