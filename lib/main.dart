@@ -11,25 +11,73 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        // home: const Center(
-        //   child: Text(
-        //     'Text berada di tengah',
-        //     style: TextStyle(
-        //         color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 40),
-        //   ),
-        // ),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      // home: const Row(
+      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //   children: <Widget>[
+      //     Icon(Icons.share),
+      //     Icon(Icons.thumb_up),
+      //     Icon(Icons.thumb_down),
+      //     Text('test')
+      //   ],
+      // ),
 
-        home: const Padding(
-          padding: EdgeInsets.all(30),
-          child: Text(
-            'ini padding',
-            style: TextStyle(
-                color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 40),
-          ),
-        ));
+      // home: const Column(
+      //   children: <Widget>[
+      //     Text(
+      //       'Judul',
+      //       style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+      //     ),
+      //     Text('data'),
+      //     Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //       children: <Widget>[
+      //         Icon(Icons.share),
+      //         Icon(Icons.thumb_up),
+      //         Icon(Icons.thumb_down),
+      //       ],
+      //     )
+      //   ],
+      // ),
+
+      home: const LearnWidgetColumn(),
+    );
+  }
+}
+
+class LearnWidgetColumn extends StatelessWidget {
+  const LearnWidgetColumn({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: <Widget>[
+        Text(
+          'Titile',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut .',
+          style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Icon(Icons.share),
+                Icon(Icons.thumb_up),
+                Icon(Icons.thumb_down),
+              ],
+            ),
+            Text('data')
+          ],
+        )
+      ],
+    );
   }
 }
