@@ -10,7 +10,69 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Wisata Bandung',
       theme: ThemeData(),
-      home: const DetailScreen(),
+      home: const LearnButton(),
+    );
+  }
+}
+
+class LearnButton extends StatefulWidget {
+  const LearnButton({Key? key}) : super(key: key);
+
+  @override
+  State<LearnButton> createState() => _LearnButton();
+}
+
+class _LearnButton extends State<LearnButton> {
+  String? language;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            ElevatedButton(
+              child: const Text("elevated button"),
+              onPressed: () {},
+            ),
+            TextButton(
+              onPressed: () {},
+              child: const Text('text button'),
+            ),
+            OutlinedButton(
+              onPressed: () {},
+              child: const Text('oulined button'),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.volume_up),
+            ),
+            DropdownButton<String>(
+              items: const <DropdownMenuItem<String>>[
+                DropdownMenuItem<String>(
+                  value: 'dart',
+                  child: Text('dart'),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'java',
+                  child: Text('java'),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'typescript',
+                  child: Text('typescript'),
+                )
+              ],
+              value: language,
+              hint: const Text('select language'),
+              onChanged: (String? value) {
+                setState(() {
+                  language = value;
+                });
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
