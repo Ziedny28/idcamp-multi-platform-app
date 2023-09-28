@@ -1,83 +1,81 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // home: const Row(
-      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //   children: <Widget>[
-      //     Icon(Icons.share),
-      //     Icon(Icons.thumb_up),
-      //     Icon(Icons.thumb_down),
-      //     Text('test')
-      //   ],
-      // ),
-
-      // home: const Column(
-      //   children: <Widget>[
-      //     Text(
-      //       'Judul',
-      //       style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-      //     ),
-      //     Text('data'),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //       children: <Widget>[
-      //         Icon(Icons.share),
-      //         Icon(Icons.thumb_up),
-      //         Icon(Icons.thumb_down),
-      //       ],
-      //     )
-      //   ],
-      // ),
-
-      home: const LearnWidgetColumn(),
+      title: 'Wisata Bandung',
+      theme: ThemeData(),
+      home: const DetailScreen(),
     );
   }
 }
 
-class LearnWidgetColumn extends StatelessWidget {
-  const LearnWidgetColumn({super.key});
+class DetailScreen extends StatelessWidget {
+  const DetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: <Widget>[
-        Text(
-          'Titile',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Text(
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut .',
-          style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Icon(Icons.share),
-                Icon(Icons.thumb_up),
-                Icon(Icons.thumb_down),
-              ],
+            Container(
+              margin: const EdgeInsets.only(top: 16.0),
+              child: const Text(
+                'Farm House Malang',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-            Text('data')
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 16.0),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Icon(Icons.calendar_today),
+                      SizedBox(height: 8.0),
+                      Text('Open Everyday'),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Icon(Icons.access_time),
+                      SizedBox(height: 8.0),
+                      Text('09:00 - 20:00')
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Icon(Icons.monetization_on),
+                      SizedBox(height: 8.0),
+                      Text('Rp 25.000'),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              child: const Text(
+                'Malang go brr',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16.0),
+              ),
+            ),
           ],
-        )
-      ],
+        ),
+      ),
     );
   }
 }
