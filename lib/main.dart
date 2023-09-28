@@ -9,48 +9,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Wisata Ngawi',
-      theme: ThemeData(),
-      home: const ImageAssetExample(),
+      theme: ThemeData(
+        fontFamily: 'Oswald',
+        primarySwatch: Colors.blue,
+      ),
+      home: const FontExample(),
     );
   }
 }
 
-class ImageAssetExample extends StatelessWidget {
-  const ImageAssetExample({super.key});
+class FontExample extends StatelessWidget {
+  const FontExample({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('image'),
-      ),
-      body: Center(
-        child: Image.network(
-          'images/android.png',
-          width: 200,
-          height: 300,
+    return const Center(
+      child: Text(
+        'custom font',
+        style: TextStyle(
+          fontFamily: 'Oswald',
+          fontSize: 30,
+          color: Colors.black,
         ),
       ),
     );
   }
 }
-
-// class ImageNetworkExample extends StatelessWidget {
-//   const ImageNetworkExample({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('image'),
-//       ),
-//       body: Center(
-//         child: Image.network(
-//           'https://picsum.photos/200/300',
-//           width: 200,
-//           height: 300,
-//         ),
-//       ),
-//     );
-//   }
-// }
