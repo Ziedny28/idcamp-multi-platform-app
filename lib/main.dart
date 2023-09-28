@@ -10,39 +10,80 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Wisata Bandung',
       theme: ThemeData(),
-      home: const SwitchExample(),
+      home: const RadioExample(),
     );
   }
 }
 
-class SwitchExample extends StatefulWidget {
-  const SwitchExample({super.key});
+class RadioExample extends StatefulWidget {
+  const RadioExample({super.key});
 
   @override
-  State<SwitchExample> createState() => _SwitchExample();
+  State<RadioExample> createState() => _RadioExample();
 }
 
-class _SwitchExample extends State<SwitchExample> {
-  bool lightOn = false;
+class _RadioExample extends State<RadioExample> {
+  String? language;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('First Screen'),
+        title: const Text('first radio'),
       ),
-      body: Switch(
-          value: lightOn,
-          onChanged: (bool value) {
-            setState(() {
-              lightOn = value;
-            });
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(lightOn ? 'LightOn' : 'LightOff'),
-                duration: const Duration(seconds: 1),
-              ),
-            );
-          }),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          ListTile(
+            leading: Radio(
+              value: 'dart',
+              groupValue: language,
+              onChanged: (String? value) {
+                setState(() {
+                  language = value;
+                  showSnackBar();
+                });
+              },
+            ),
+            title: const Text('dart'),
+          ),
+          ListTile(
+            leading: Radio(
+              value: 'kotlin',
+              groupValue: language,
+              onChanged: (String? value) {
+                setState(() {
+                  language = value;
+                  showSnackBar();
+                });
+              },
+            ),
+            title: const Text('kotlin'),
+          ),
+          ListTile(
+            leading: Radio(
+              value: 'swift',
+              groupValue: language,
+              onChanged: (String? value) {
+                setState(() {
+                  language = value;
+                  showSnackBar();
+                });
+              },
+            ),
+            title: const Text('swift'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void showSnackBar() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('$language selected'),
+        duration: const Duration(seconds: 1),
+      ),
     );
   }
 }
