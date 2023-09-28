@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Wisata Bandung',
+      title: 'Wisata Ngawi',
       theme: ThemeData(),
       home: const ImageAssetExample(),
     );
