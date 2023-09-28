@@ -10,79 +10,37 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Wisata Bandung',
       theme: ThemeData(),
-      home: const RadioExample(),
+      home: const CheckBoxExample(),
     );
   }
 }
 
-class RadioExample extends StatefulWidget {
-  const RadioExample({super.key});
+class CheckBoxExample extends StatefulWidget {
+  const CheckBoxExample({super.key});
 
   @override
-  State<RadioExample> createState() => _RadioExample();
+  State<CheckBoxExample> createState() => _CheckBoxExample();
 }
 
-class _RadioExample extends State<RadioExample> {
-  String? language;
+class _CheckBoxExample extends State<CheckBoxExample> {
+  bool agree = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('first radio'),
+        title: const Text('checkBox'),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ListTile(
-            leading: Radio(
-              value: 'dart',
-              groupValue: language,
-              onChanged: (String? value) {
-                setState(() {
-                  language = value;
-                  showSnackBar();
-                });
-              },
-            ),
-            title: const Text('dart'),
-          ),
-          ListTile(
-            leading: Radio(
-              value: 'kotlin',
-              groupValue: language,
-              onChanged: (String? value) {
-                setState(() {
-                  language = value;
-                  showSnackBar();
-                });
-              },
-            ),
-            title: const Text('kotlin'),
-          ),
-          ListTile(
-            leading: Radio(
-              value: 'swift',
-              groupValue: language,
-              onChanged: (String? value) {
-                setState(() {
-                  language = value;
-                  showSnackBar();
-                });
-              },
-            ),
-            title: const Text('swift'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void showSnackBar() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('$language selected'),
-        duration: const Duration(seconds: 1),
+      body: ListTile(
+        leading: Checkbox(
+          value: agree,
+          onChanged: (bool? value) {
+            setState(() {
+              agree = value!;
+            });
+          },
+        ),
+        title: const Text('agree/disagree'),
       ),
     );
   }
