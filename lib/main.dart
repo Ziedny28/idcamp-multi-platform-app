@@ -10,38 +10,47 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Wisata Bandung',
       theme: ThemeData(),
-      home: const CheckBoxExample(),
+      home: const ImageAssetExample(),
     );
   }
 }
 
-class CheckBoxExample extends StatefulWidget {
-  const CheckBoxExample({super.key});
-
-  @override
-  State<CheckBoxExample> createState() => _CheckBoxExample();
-}
-
-class _CheckBoxExample extends State<CheckBoxExample> {
-  bool agree = false;
+class ImageAssetExample extends StatelessWidget {
+  const ImageAssetExample({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('checkBox'),
+        title: const Text('image'),
       ),
-      body: ListTile(
-        leading: Checkbox(
-          value: agree,
-          onChanged: (bool? value) {
-            setState(() {
-              agree = value!;
-            });
-          },
+      body: Center(
+        child: Image.network(
+          'images/android.png',
+          width: 200,
+          height: 300,
         ),
-        title: const Text('agree/disagree'),
       ),
     );
   }
 }
+
+// class ImageNetworkExample extends StatelessWidget {
+//   const ImageNetworkExample({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('image'),
+//       ),
+//       body: Center(
+//         child: Image.network(
+//           'https://picsum.photos/200/300',
+//           width: 200,
+//           height: 300,
+//         ),
+//       ),
+//     );
+//   }
+// }
