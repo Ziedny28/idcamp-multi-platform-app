@@ -13,95 +13,141 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Oswald',
         primarySwatch: Colors.blue,
       ),
-      home: const ScrollingScreenListViewBuilder(),
+      debugShowCheckedModeBanner: false,
+      home: const FlexibleExample(),
     );
   }
 }
 
-class ScrollingScreenListViewSeparated extends StatelessWidget {
-  const ScrollingScreenListViewSeparated({super.key});
+class FlexibleExample extends StatelessWidget {
+  const FlexibleExample({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const List<int> numberList = <int>[1, 2, 3, 4, 5, 6, 7, 8];
-
-    return Scaffold(
-      body: ListView.separated(
-        itemCount: numberList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            height: 250,
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              border: Border.all(
-                color: Colors.black,
-              ),
+    return const Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Row(
+              children: [ExpandedWidget(), FlexibleWidged()],
             ),
-            child: Center(
-                child: Text(
-              '${numberList[index]}',
-              style: const TextStyle(fontSize: 50),
-            )),
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return const Divider();
-        },
+            Row(
+              children: [
+                ExpandedWidget(),
+                ExpandedWidget(),
+              ],
+            ),
+            Row(
+              children: [
+                FlexibleWidged(),
+                FlexibleWidged(),
+              ],
+            ),
+            Row(
+              children: [
+                FlexibleWidged(),
+                ExpandedWidget(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class ScrollingScreenListViewBuilder extends StatelessWidget {
-  const ScrollingScreenListViewBuilder({super.key});
+class ExpandedRainbow extends StatelessWidget {
+  const ExpandedRainbow({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const List<int> numberList = <int>[1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-    return Scaffold(
-        body: ListView.builder(
-            itemCount: numberList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                height: 250,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  border: Border.all(
-                    color: Colors.black,
-                  ),
-                ),
-                child: Center(
-                    child: Text(
-                  '${numberList[index]}',
-                  style: const TextStyle(fontSize: 50),
-                )),
-              );
-            }));
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            color: Colors.red,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.orange,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.yellow,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.green,
+          ),
+        ),
+        Expanded(
+          flex: 2,
+          child: Container(
+            color: Colors.blue,
+          ),
+        ),
+        Expanded(
+          flex: 2,
+          child: Container(
+            color: Colors.purple,
+          ),
+        ),
+      ],
+    );
   }
 }
 
-class ScrollingScreen extends StatelessWidget {
-  const ScrollingScreen({super.key});
-  final List<int> numberList = const <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+class ExpandedWidget extends StatelessWidget {
+  const ExpandedWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: ListView(
-            children: numberList.map((number) {
-      return Container(
-        height: 250,
+    return Expanded(
+      child: Container(
         decoration: BoxDecoration(
-          color: Colors.grey,
-          border: Border.all(color: Colors.black),
+          color: Colors.teal,
+          border: Border.all(color: Colors.white),
         ),
-        child: Center(
+        child: const Padding(
+          padding: EdgeInsets.all(16.0),
           child: Text(
-            '$number',
-            style: const TextStyle(fontSize: 50),
+            'Expanded',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+            ),
           ),
         ),
-      );
-    }).toList()));
+      ),
+    );
+  }
+}
+
+class FlexibleWidged extends StatelessWidget {
+  const FlexibleWidged({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.tealAccent,
+          border: Border.all(color: Colors.white),
+        ),
+        child: const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            'Flexible',
+            style: TextStyle(
+              color: Colors.teal,
+              fontSize: 24,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
