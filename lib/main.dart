@@ -60,22 +60,24 @@ class ScrollingScreenListViewBuilder extends StatelessWidget {
     const List<int> numberList = <int>[1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     return Scaffold(
-        body: ListView.builder(itemBuilder: (BuildContext context, int index) {
-      return Container(
-        height: 250,
-        decoration: BoxDecoration(
-          color: Colors.grey,
-          border: Border.all(
-            color: Colors.black,
-          ),
-        ),
-        child: Center(
-            child: Text(
-          '${numberList[index]}',
-          style: const TextStyle(fontSize: 50),
-        )),
-      );
-    }));
+        body: ListView.builder(
+            itemCount: numberList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                height: 250,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  border: Border.all(
+                    color: Colors.black,
+                  ),
+                ),
+                child: Center(
+                    child: Text(
+                  '${numberList[index]}',
+                  style: const TextStyle(fontSize: 50),
+                )),
+              );
+            }));
   }
 }
 
