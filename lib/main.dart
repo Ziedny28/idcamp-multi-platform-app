@@ -14,138 +14,56 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const FlexibleExample(),
+      home: const FirstScreen(),
     );
   }
 }
 
-class FlexibleExample extends StatelessWidget {
-  const FlexibleExample({super.key});
+class FirstScreen extends StatelessWidget {
+  const FirstScreen({super.key});
+  final String message = 'Hello from First Screen!';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('First Screen'),
+      ),
+      body: Center(
+          child: ElevatedButton(
+        child: const Text('Pindah Screen'),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return SecondScreen(message);
+          }));
+        },
+      )),
+    );
+  }
+}
+
+class SecondScreen extends StatelessWidget {
+  final String message;
+
+  const SecondScreen(this.message, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Screen'),
+      ),
+      body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              children: [ExpandedWidget(), FlexibleWidged()],
-            ),
-            Row(
-              children: [
-                ExpandedWidget(),
-                ExpandedWidget(),
-              ],
-            ),
-            Row(
-              children: [
-                FlexibleWidged(),
-                FlexibleWidged(),
-              ],
-            ),
-            Row(
-              children: [
-                FlexibleWidged(),
-                ExpandedWidget(),
-              ],
+            Text(message),
+            OutlinedButton(
+              child: const Text('Kembali'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class ExpandedRainbow extends StatelessWidget {
-  const ExpandedRainbow({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: Container(
-            color: Colors.red,
-          ),
-        ),
-        Expanded(
-          child: Container(
-            color: Colors.orange,
-          ),
-        ),
-        Expanded(
-          child: Container(
-            color: Colors.yellow,
-          ),
-        ),
-        Expanded(
-          child: Container(
-            color: Colors.green,
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Container(
-            color: Colors.blue,
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Container(
-            color: Colors.purple,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class ExpandedWidget extends StatelessWidget {
-  const ExpandedWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.teal,
-          border: Border.all(color: Colors.white),
-        ),
-        child: const Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Text(
-            'Expanded',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class FlexibleWidged extends StatelessWidget {
-  const FlexibleWidged({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Flexible(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.tealAccent,
-          border: Border.all(color: Colors.white),
-        ),
-        child: const Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Text(
-            'Flexible',
-            style: TextStyle(
-              color: Colors.teal,
-              fontSize: 24,
-            ),
-          ),
         ),
       ),
     );
