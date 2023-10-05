@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:idcamp/wisata/model/tourism_place.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+  final TourismPlace place;
+  const DetailScreen({Key? key, required this.place}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +17,10 @@ class DetailScreen extends StatelessWidget {
             children: <Widget>[
               Container(
                 margin: const EdgeInsets.only(top: 16.0),
-                child: const Text(
-                  'Kota Wisata Malang',
+                child: Text(
+                  place.name,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Staatliches',
@@ -26,41 +28,68 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
 
+              Stack(
+                children: <Widget>[
+                  Image.asset(place.imageUrls[0]),
+                  SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.grey,
+                            child: IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(
+                                Icons.arrow_back,
+                              ),
+                            ),
+                          ),
+                          const FavoriteButton()
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
               // Image.asset('images/dreamland-malang.jpg'), //error disini
-              Image.network(
-                  'assets/images/dreamland-malang.jpg'), //error disini
+              Image.network(place.imageUrls[0]), //error disini
 
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 16.0),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Column(
                       children: <Widget>[
-                        Icon(Icons.calendar_today),
-                        SizedBox(height: 8.0),
+                        const Icon(Icons.calendar_today),
+                        const SizedBox(height: 8.0),
                         Text(
-                          'Open Everyday',
+                          place.openDays,
                           style: informationTextStyle,
                         ),
                       ],
                     ),
                     Column(
                       children: <Widget>[
-                        Icon(Icons.access_time),
-                        SizedBox(height: 8.0),
+                        const Icon(Icons.access_time),
+                        const SizedBox(height: 8.0),
                         Text(
-                          '09:00 - 20:00',
+                          place.openTime,
                           style: informationTextStyle,
                         )
                       ],
                     ),
                     Column(
                       children: <Widget>[
-                        Icon(Icons.monetization_on),
-                        SizedBox(height: 8.0),
+                        const Icon(Icons.monetization_on),
+                        const SizedBox(height: 8.0),
                         Text(
-                          'Rp 25.000',
+                          place.ticketPrice,
                           style: informationTextStyle,
                         ),
                       ],
@@ -70,10 +99,10 @@ class DetailScreen extends StatelessWidget {
               ),
               Container(
                 padding: const EdgeInsets.all(16.0),
-                child: const Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                child: Text(
+                  place.description,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16.0),
+                  style: const TextStyle(fontSize: 16.0),
                 ),
               ),
 
@@ -82,8 +111,8 @@ class DetailScreen extends StatelessWidget {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  children: [
-                    Padding(
+                  children: place.imageUrls.map((url) {
+                    return Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
@@ -92,32 +121,38 @@ class DetailScreen extends StatelessWidget {
                           height: 200.0,
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                            'https://cdn1.katadata.co.id/media/images/thumb/2021/05/26/2021_05_26-15_03_36_48986f0c49650fdc60756e440210c77c_620x413_thumb.jpg',
-                            height: 200.0),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          'https://res.klook.com/image/upload/fl_lossy.progressive,q_85/c_fill,w_680/v1624855947/blog/cppkda1xsxcally2z1h9.jpg',
-                          height: 200.0,
-                        ),
-                      ),
-                    ),
-                  ],
+                    );
+                  }).toList(),
                 ),
-              )
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class FavoriteButton extends StatefulWidget {
+  const FavoriteButton({super.key});
+
+  @override
+  _FavoriteButtonState createState() => _FavoriteButtonState();
+}
+
+class _FavoriteButtonState extends State<FavoriteButton> {
+  bool isFavorite = false;
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        setState(() {
+          isFavorite = !isFavorite;
+        });
+      },
+      icon: Icon(
+        isFavorite ? Icons.favorite : Icons.favorite_border,
+        color: Colors.red,
       ),
     );
   }
