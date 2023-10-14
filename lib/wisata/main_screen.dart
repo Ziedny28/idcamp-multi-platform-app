@@ -3,12 +3,13 @@ import 'package:idcamp/wisata/detail_screen.dart';
 import 'package:idcamp/wisata/model/tourism_place.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+  const MainScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Malang'),
+        title: const Text('Wisata Bandung'),
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
@@ -16,15 +17,12 @@ class MainScreen extends StatelessWidget {
           return InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return DetailScreen(
-                  place: place,
-                );
+                return DetailScreen(place: place);
               }));
             },
             child: Card(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Expanded(
                     flex: 1,
@@ -36,7 +34,6 @@ class MainScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           Text(
                             place.name,
@@ -49,7 +46,7 @@ class MainScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
